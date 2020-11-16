@@ -36,8 +36,8 @@ class MainWindow(QMainWindow):
         ################################
         # TODO 2: create the template gallery
         ###############################
-        #self.create_template_gallery()
-        #v_layout.addWidget( self.gallery )
+        self.gallery = self.create_template_gallery()
+        v_layout.addWidget( self.gallery )
 
         self.canvas = Canvas()
         v_layout.addWidget(self.canvas)
@@ -81,9 +81,10 @@ class MainWindow(QMainWindow):
     def create_template_gallery(self):
         gallery = QListWidget()
         gallery.setFixedHeight(150)
-
         #todo 2 customize the gallery
-
+        gallery.setViewMode(QListView.IconMode)
+        gallery.setUniformItemSizes(True)
+        gallery.setIconSize(QSize(50, 50))
         return gallery
 
 
