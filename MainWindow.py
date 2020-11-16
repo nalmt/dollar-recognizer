@@ -60,15 +60,16 @@ class MainWindow(QMainWindow):
         name = ["Triangle", "X", "Rectangle", "Circle", "Check", "Caret", "Question", "Arrow", "left square bracket",
                 "Right square bracket", "V", "Delete", "Left curly brace", "Right curly brace", "Star", "Pigtail"]
         #todo load the database
-        data = []
-        labels = []
+        d = pickle.load(open('./onedol_ds.pkl', 'rb'))
+        data = d['dataset']
+        labels = d['labels']
 
         label = -1
         all_gesture = False
         for gesture, label_index in zip(data, labels):
             if label_index != label:
                 # todo 3 add the template in the gallery
-
+                self.add_template_thumbnail(gesture, name[label_index])
                 # todo 4 add the template to the one_dollar_recognizer
 
                 if not all_gesture:
@@ -101,6 +102,8 @@ class MainWindow(QMainWindow):
         icon = QIcon(pix)
 
         #todo 3 create and add the corresponding item in the gallery
+        item = QListWidgetItem(icon, label)
+        self.gallery.addItem(item)
 
 
     #######################
